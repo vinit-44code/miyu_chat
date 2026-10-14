@@ -3,6 +3,7 @@ const router =  express.Router();
 const authMiddleWare = require("../middlewares/middleware");
 const newUser = require("../models/user");
 const conversation = require("../models/convo");
+const message = require("../models/message")
 
 
 router.post("/convo",authMiddleWare,async(req,res)=>{
@@ -25,11 +26,13 @@ if(!reciver){
 
  let existConvo = await conversation.findOne({
         
-    participants: {
+   participents: {
         $all: [userId, reciverId]
     }
 
     })
+
+    console.log(existConvo);
 
     if(!existConvo){
 
@@ -55,6 +58,50 @@ if(!reciver){
 
 
 })
+
+
+router.get("/convo/all",authMiddleWare,async(req,res)=>{
+
+    let userId =  req.userId;
+
+
+
+    try{
+
+            let allConvo = await conversation.find({
+                participents: userId
+            }).populate("participents", "Username");
+
+
+                const result = await Promise.all(
+    allConvo.map(async (convo) => {
+        const lastMessage = await message
+            .findOne({ converasation_id: convo._id })
+            .sort({ createdAt: -1});
+
+        return {
+            ...convo.toObject(),
+            lastMessage: lastMessage
+        };
+    })
+);
+
+return res.status(200).json(result);
+            
+            
+
+    }catch(err){
+
+        res.status(501).json({
+            message:"Bad request on db"
+        })
+
+    }
+
+})
+
+
+
 
 
 module.exports = router;

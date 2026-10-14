@@ -7,51 +7,45 @@ const conversation = require("../models/convo");
 const message = require("../models/message")
 
 
-
-router.post("/message",authMiddleWare,async(req,res)=>{
-
-
+router.post("/message", authMiddleWare, async (req, res) => {
     let content = req.body.content;
-
     let convoId = req.body.converasation_id;
+    let sender_id = req.userId;
 
-    let sender_id = req.userId ;
+    try {
+        let existConvo = await conversation.findOne({
+            _id: convoId,
+            participents: sender_id
+        });
 
-    console.log("convoId:", convoId);
-console.log("sender:", sender_id);
-
-    try{
-
-        let  existConvo = await conversation.findOne({_id:convoId,participents:sender_id})
-
-        if(existConvo){
-
+        if (existConvo) {
             let newMessage = await message.create({
-                converasation_id:convoId,
-                sender_id: sender_id ,
+                converasation_id: convoId,
+                sender_id: sender_id,
                 content: content
+            });
 
-            })
+            // Get the Socket.IO instance
+            const io = req.app.get("io");
 
-            return res.status(201).json(newMessage)
+            // Broadcast only to this conversation's room
+            io.to(String(convoId)).emit("newMessage", newMessage);
 
-
+            return res.status(201).json(newMessage);
         }
 
-        return res.status(401).json({message:"convo or sender does not exist "})
+        return res.status(401).json({
+            message: "convo or sender does not exist"
+        });
 
-
-
-    }catch(er){
+    } catch (er) {
+        console.error(er);
 
         res.status(400).json({
-            message:"bad request"
-        })
-
+            message: "bad request"
+        });
     }
-
-
-})
+});
 
 
 router.get("/messages/:convoId",authMiddleWare,async(req,res)=>{
@@ -62,7 +56,7 @@ router.get("/messages/:convoId",authMiddleWare,async(req,res)=>{
         try{
 
 
-            let   existConvo = await conversation.findOne({_id:convoId,participants:userId})
+            let   existConvo = await conversation.findOne({_id:convoId,participents:userId})
 
             if(existConvo){
 

@@ -1,0 +1,398 @@
+
+/* ---------- Base ---------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.005em;
+    font-weight: 400;
+    background-color: rgb(248, 249, 255);
+}
+
+
+/* ---------- Sidebar Layout ---------- */
+
+.Sidebar {
+    position: relative;
+    top: auto;
+    left: auto;
+    z-index: 40;
+
+    flex: 0 0 360px;
+    width: 360px;
+    height: 100%;
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    background: rgb(248, 249, 255);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
+}
+
+.main-sidebar {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+}
+
+
+/* ---------- Logo ---------- */
+.logo-block {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 1.25rem 1.5rem;
+
+    min-height: 72px;
+    background-color: rgb(248, 249, 255);
+}
+
+/* Logo mark */
+.logo-block span:first-child {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    color: #fff;
+    background-color: rgb(15, 25, 220);
+    border-radius: 11px;
+
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+
+    box-shadow: 0 4px 10px rgba(15, 25, 220, 0.15);
+}
+
+/* App name */
+.logo-block span:last-child {
+    color: rgb(11, 28, 48);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+
+/* ---------- Search ---------- */
+
+#search-bar {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    padding: 0 1.5rem 0.5rem;
+}
+
+#search-bar input {
+    width: 100%;
+    min-width: 0;
+
+    padding: 0.5rem 1rem 0.5rem 2.25rem;
+
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: inherit;
+    font-weight: 400;
+    color: rgb(11, 28, 48);
+
+    background-color: rgba(226, 234, 251, 0.9);
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
+}
+
+#search-bar input:focus {
+    outline: none;
+    border-color: rgba(183, 205, 251, 0.9);
+    box-shadow: none;
+}
+
+
+/* ---------- Filters ---------- */
+
+#filtre-box {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+
+    padding: 0.25rem 1.5rem;
+}
+
+#filtre-box button {
+    padding: 0.25rem 0.5rem;
+
+    font-family: inherit;
+    font-size: 11px;
+    line-height: 14px;
+    letter-spacing: 0.02em;
+    font-weight: 500;
+    color: rgb(11, 28, 48);
+
+    background-color: rgba(226, 234, 251, 0.9);
+    border: none;
+    border-radius: 9999px;
+
+    appearance: none;
+    cursor: pointer;
+}
+
+#filtre-box button:hover {
+    background-color: #d5e1fa;
+}
+
+
+/* ---------- Conversation List ---------- */
+
+.conversation-block {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+
+    gap: 0.5rem;
+    padding: 0.5rem;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.Convo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    flex-shrink: 0;
+    min-width: 0;
+
+    padding: 0.75rem 0.5rem;
+
+    color: rgb(11, 28, 48);
+    background-color: rgba(226, 234, 251, 0.9);
+    border-radius: 0.75rem;
+
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.Convo:hover {
+    background-color: #dce6fa;
+}
+
+
+/* ---------- Profile Pictures ---------- */
+
+.pfp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 30px;
+    background-color: rgba(194, 209, 241, 0.9);
+        border-radius: 999px;
+    flex-shrink: 0;
+}
+
+
+/* ---------- Sender Information ---------- */
+
+.sender-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.sender-name-time {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.sender-name-time span:first-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.sender-name-time span:last-child {
+    flex-shrink: 0;
+}
+
+
+/* ---------- Last Message ---------- */
+
+.last-message {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    margin: 0;
+
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.005em;
+    font-weight: 400;
+}
+
+
+/* ---------- Bottom User Settings ---------- */
+/* ---------- Bottom User Settings ---------- */
+
+.UserInfo-setting {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    padding: 14px 20px;
+    background-color: rgb(239, 244, 255);
+    border-top: 1px solid #e5eaf5;
+}
+
+/* User profile section */
+.Username-block {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+/* Avatar */
+.Username-block .pfp {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #fff;
+    background-color: rgb(15, 25, 220);
+    border-radius: 50%;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Username */
+#Username {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    color: rgb(11, 28, 48);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Online/offline status */
+#UserStatus {
+    flex-shrink: 0;
+    font-size: 11px;
+    color: #64748b;
+}
+
+/* Settings button container */
+#setting-block {
+    flex-shrink: 0;
+}
+
+/* Settings button */
+#setting {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: transparent;
+    border: none;
+    border-radius: 10px;
+
+    color: rgb(11, 28, 48);
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+#setting:hover {
+    background-color: #e2eafb;
+    color: rgb(15, 25, 220);
+}
+
+#setting:focus-visible {
+    outline: 2px solid rgb(15, 25, 220);
+    outline-offset: 2px;
+}
+
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+    .Sidebar {
+        flex-basis: 100%;
+        width: 100%;
+    }
+}
+
+
+
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 4;
+  width: 90%;
+  max-height: 300px;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  z-index: 100;
+  color: #222;
+}
+
+.search-result {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+}
+
+.search-result:hover {
+  background: #f3f6ff;
+}
+
+.search-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e0e7ff;
+  color: #3730a3;
+  font-weight: 600;
+  flex-shrink: 0;
+}

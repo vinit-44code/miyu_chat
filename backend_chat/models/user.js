@@ -26,7 +26,13 @@ Bio:{
         required: true
 
 
-    }
+    },
+
+    Status: {
+    type: String,
+    enum: ["online", "away", "offline"],
+    default: "offline"
+}
 
 
 

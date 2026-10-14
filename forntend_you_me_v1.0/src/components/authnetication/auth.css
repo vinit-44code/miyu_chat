@@ -1,0 +1,166 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.Landing-page {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e5e7eb;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 24px;
+}
+
+.Form-Block {
+    width: 100%;
+    max-width: 550px;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow:
+        0 20px 25px -5px rgb(203 219 245 / 40%),
+        0 8px 10px -6px rgb(203 219 245 / 40%);
+    position: relative;
+    z-index: 1;
+}
+
+.Auth-card {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 10px;
+}
+
+.form-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    padding: 5px;
+    text-align: center;
+}
+
+.form-header span {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #e5e7eb;
+    background-color: rgb(15, 25, 220);
+    border-radius: 10px;
+    box-shadow: 0 8px 10px -6px rgb(203 219 245 / 40%);
+}
+
+#toggle-change {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+}
+
+#end-to-end {
+    width: 100%;
+    background-color: #eff4ff;
+    padding: 10px;
+    color: #464554;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 15px;
+    border-radius: 15px;
+}
+
+#outlined-basic {
+    background-color: #eff4ff;
+    border-radius: 20px;
+}
+
+
+.Auth-card div{
+    border-radius: 20px;
+}
+
+
+.Auth-card button {
+    min-height: 40px;
+    appearance: none;
+    border: none;
+    background-color: rgb(15, 25, 220);
+    color: #e5e7eb;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.Auth-card button:hover {
+    background-color: rgb(12, 20, 190);
+}
+
+.deco,
+.deco-right {
+    position: absolute;
+    z-index: -1;
+    border-radius: 50%;
+    filter: blur(64px);
+    pointer-events: none;
+}
+
+.deco {
+    width: 28rem;
+    height: 28rem;
+    background-color: rgba(142, 142, 232, 0.82);
+    top: -8rem;
+    left: -8rem;
+}
+
+.deco-right {
+    width: 30rem;
+    height: 30rem;
+    background-color: rgba(142, 190, 232, 0.82);
+    bottom: -10rem;
+    right: -10rem;
+}
+
+/* Smaller screens */
+@media (max-width: 600px) {
+    .Landing-page {
+        padding: 16px;
+    }
+
+    .Form-Block {
+        padding: 20px;
+        border-radius: 18px;
+    }
+
+    .Auth-card {
+        gap: 22px;
+        padding: 6px;
+    }
+
+    #toggle-change {
+        gap: 16px;
+    }
+
+    .deco {
+        width: 20rem;
+        height: 20rem;
+    }
+
+    .deco-right {
+        width: 22rem;
+        height: 22rem;
+    }
+}

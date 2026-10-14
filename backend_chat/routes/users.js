@@ -3,10 +3,6 @@ const router =  express.Router();
 const authMiddleWare = require("../middlewares/middleware");
 const newUser = require("../models/user");
 
-router.get("/test", (req, res) => {
-    res.send("users router works");
-});
-
 
 router.get("/search",authMiddleWare,async(req,res)=>{
 
