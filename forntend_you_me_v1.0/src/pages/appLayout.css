@@ -1,3 +1,4 @@
+
 html,
 body,
 #root {
@@ -19,8 +20,10 @@ body,
     overflow: hidden;
 }
 
+/* Desktop: sidebar and chat side by side */
 .app-layout > .Sidebar {
     flex: 0 0 360px;
+    min-width: 0;
 }
 
 .app-layout > .chat-screen,
@@ -31,4 +34,38 @@ body,
     min-height: 0;
     height: 100%;
     margin: 0;
+}
+
+/* Mobile: show only the active panel */
+@media (max-width: 768px) {
+    .app-layout > .Sidebar {
+        display: none;
+        flex: 0 0 100%;
+        width: 100%;
+    }
+
+    .app-layout > .chat-screen,
+    .app-layout > #first-screen {
+        display: none;
+        flex: 0 0 100%;
+        width: 100%;
+        min-width: 0;
+        height: 100%;
+    }
+
+    .app-layout.list-open > .Sidebar {
+        display: flex;
+    }
+
+    .app-layout.chat-open > .Sidebar {
+        display: none;
+    }
+
+    .app-layout.chat-open > .chat-screen {
+        display: flex;
+    }
+
+    .app-layout.list-open > #first-screen {
+        display: flex;
+    }
 }

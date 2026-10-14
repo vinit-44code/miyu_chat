@@ -151,7 +151,11 @@ document.addEventListener("touchstart", sendActivity);
 
     return(<>
     
-    <div className="app-layout">
+   <div
+  className={`app-layout ${
+    selectedConvo ? "chat-open" : "list-open"
+  }`}
+                >
   <Sidebar setSelectedConvo={setSelectedConvo}   me={Me}
   convo={convo}/>
 

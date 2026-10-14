@@ -1,6 +1,6 @@
 
 
-import { useState,useEffect } from "react";
+import { useState,useEffect,useRef } from "react";
 
 import"./sidebar.css"
 
@@ -9,7 +9,22 @@ export default function Sidebar({convo,SetConvo,me,setSelectedConvo}){
 
     const [searchText, setSearchText] = useState("");
     const [searchResults, setSearchResults] = useState([]);
+   const [menuOpen, setMenuOpen] = useState(false);
+    const menuRef = useRef(null);
 
+       useEffect(() => {
+         const handleOutsideClick = (event) => {
+           if (menuRef.current && !menuRef.current.contains(event.target)) {
+               setMenuOpen(false);
+        }
+                     };
+
+               document.addEventListener("pointerdown", handleOutsideClick);
+
+                     return () => {
+                    document.removeEventListener("pointerdown", handleOutsideClick);
+                                       };
+                                          }, []);
 
     const OpenConversation = async (reciverId) => {
   try {
@@ -98,12 +113,74 @@ export default function Sidebar({convo,SetConvo,me,setSelectedConvo}){
 
   <div className="main-sidebar"> 
 
-                    <div className="logo-block">
+                     
+                     <div className="logo-block">
+                        <span className="app-name">M&Y</span>
+                      <span>MiYu</span>
 
-                        <span> M&Y</span>
-                        <span>MiYu</span>
+                    <div className="mobile-menu-container" ref={menuRef}>
+                            <button
+                    type="button"
+                 className="mobile-menu-trigger"
+                 aria-label="Open account menu"
+              aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((open) => !open)}
+                              >
+                             ⋮
+                               </button>
 
-                    </div>
+                     {menuOpen && (
+                           <div className="profile-menu">
+                        <div className="profile-menu-user">
+                           <div className="pfp">
+                            {me?.Username?.slice(0, 2).toUpperCase()}
+                                 </div>
+                                        <div>
+                          <strong>{me?.Username || "My Account"}</strong>
+                         <small>My account</small>
+                        </div>
+                                 </div>
+
+                        <div className="profile-menu-divider" />
+       
+                           <button
+                            type="button"
+                       className="profile-menu-item"
+                             onClick={() => setMenuOpen(false)}
+                                     >
+                              <span>♙</span> Profile
+                                             </button>
+
+                                <button
+                                         type="button"
+                              className="profile-menu-item"
+                              onClick={() => setMenuOpen(false)}
+                                           >
+                                       <span>⚙</span> Settings
+                                                 </button>
+
+                                        <button
+                                      type="button"
+                             className="profile-menu-item"
+                         onClick={() => setMenuOpen(false)}
+                                     >
+                                  <span>◐</span> Theme
+                                      </button>
+
+                          <div className="profile-menu-divider" />
+
+                                  <button
+                                   type="button"
+                                className="profile-menu-item logout-item"
+                               onClick={() => setMenuOpen(false)}
+        >
+                                  <span>↪</span> Log out
+                                              </button>
+                                              </div>
+                                          )}
+                                           </div>
+                        </div>
+
 
                     <div id="search-bar">
                         <input type="text" placeholder="Search conversations..." className="search-input"  value={searchText}
