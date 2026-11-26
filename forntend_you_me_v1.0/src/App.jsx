@@ -6,7 +6,6 @@ import ProtectedRoute from "./protectedRoute";
 import MainMe from "./pages/mainMe";
 
 
-
 export default function App(){
 return(<>
 <Routes>

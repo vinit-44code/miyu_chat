@@ -88,4 +88,37 @@ router.get("/messages/:convoId",authMiddleWare,async(req,res)=>{
 
 })
 
+
+
+router.post("/delete/:convoId",authMiddleWare,async(req,res)=>{
+   let convoId = req.params.convoId;
+   let userId = req.userId;
+        console.log(convoId)
+
+   try{
+
+    
+            let   existConvo = await conversation.findOne({_id:convoId,participents:userId})
+
+            if(existConvo){
+
+                
+                let result = await message.deleteMany({
+                      converasation_id : convoId 
+                })
+
+                console.log(result)
+                res.status(200).json(result);
+
+                
+            }
+
+   }catch(er){
+
+    res.status(204).json({
+        message:"message coudn't be clear"
+    })
+
+   }
+})
 module.exports = router;

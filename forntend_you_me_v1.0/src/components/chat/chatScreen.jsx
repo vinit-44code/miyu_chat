@@ -9,6 +9,27 @@ export default function ChatScreen({ selectedConvo, Me, onBack ,  socket }) {
   const [sending, setSending] = useState(false);
   const bottomRef = useRef(null);
 
+
+
+  const clearMessage =async()=>{
+
+    try{
+
+      let res = await fetch(`http://localhost:3000/api/delete/${selectedConvo._id}`,{
+        method :"POST",
+         credentials: "include"
+
+      })
+let data = await res.json();
+      console.log(data)
+    }catch(er){
+
+      console.log(er)
+
+    }
+
+  }
+
   const otherUser = selectedConvo?.participents?.find(
     (u) => String(u._id) !== String(Me?._id)
   );
@@ -286,6 +307,9 @@ export default function ChatScreen({ selectedConvo, Me, onBack ,  socket }) {
               <strong>Participants</strong>
               <p>You and {username}</p>
             </div>
+          </div>
+              <div className="clear-chat-but">
+          <button onClick={clearMessage}>clear all chat</button>
           </div>
         </aside>
       </div>
